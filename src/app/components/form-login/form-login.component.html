@@ -1,0 +1,6 @@
+<form [formGroup]="formLogin" (ngSubmit)="login($event)" class="form-login">
+  <h3>Login</h3>
+  <input formControlName="email" type="email" required>
+  <input formControlName="password" type="password" required>
+  <input type="submit" value="Enviar">
+</form>
