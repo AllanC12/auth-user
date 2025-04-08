@@ -1,0 +1,49 @@
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  background-color: rgba(15, 21, 37, 0.8) !important;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+input[type=email], input[type=password], input[type=text], input[type=date] {
+  height: 25px;
+  padding-left: 5px;
+  outline: 0;
+  border: 0;
+  margin-bottom: 10px;
+}
+
+input[type=date] {
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: #4762a8;
+  color: white;
+  border: 0;
+  padding: 5px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+h3 {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+p {
+  margin-top: 8%;
+  color: #fff;
+}
+p a {
+  color: #fff;
+}/*# sourceMappingURL=form-register.component.css.map */
