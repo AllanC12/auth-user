@@ -1,1 +1,8 @@
-<p>form-register works!</p>
+<form [formGroup]="formRegister" class="form-register">
+    <h3>Register</h3>
+    <input placeholder="Name..." formControlName="name" type="text" required>
+    <input type="date" name="" formControlName="birthAt" id="birth-at">
+    <input placeholder="Email..." formControlName="email" type="email" required>
+    <input placeholder="Password..." formControlName="password" type="password" required>
+    <input type="submit" value="Registrar">
+</form>

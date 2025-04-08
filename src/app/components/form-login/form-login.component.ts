@@ -4,17 +4,23 @@ import { HttpClient } from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router'
+import { RouterModule } from '@angular/router';
+
+interface ResponseLogin{
+  access_token: string;
+}
 
 
 @Component({
   selector: 'app-form-login',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule],
+  imports: [HttpClientModule, ReactiveFormsModule, RouterModule],
   templateUrl: './form-login.component.html',
-  styleUrl: './form-login.component.scss'
+  styleUrls: ['./form-login.component.scss']
 })
 export class FormLoginComponent {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private router: Router) {}
 
   formLogin = new FormGroup({
     email: new FormControl(''),
@@ -29,9 +35,9 @@ export class FormLoginComponent {
       password: this.formLogin.value.password
     }
 
-    const result = this.http.post(url, data).subscribe({
+    const result = this.http.post<ResponseLogin>(url, data).subscribe({
       next: (response) => {
-        console.log('Login successful', response)
+         localStorage.setItem('token', response.access_token)
       },
       error: (error) => {
         console.error('Login failed', error)
