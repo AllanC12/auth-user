@@ -1,47 +1,49 @@
 import { Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { LoginService } from './services/login.service';
 
-interface ResponseLogin{
+interface ResponseLogin {
   access_token: string;
 }
-
 
 @Component({
   selector: 'app-form-login',
   standalone: true,
+  providers: [LoginService, HttpClient],
   imports: [HttpClientModule, ReactiveFormsModule, RouterModule],
   templateUrl: './form-login.component.html',
-  styleUrls: ['./form-login.component.scss']
+  styleUrls: ['./form-login.component.scss'],
 })
 export class FormLoginComponent {
-  constructor(private readonly http: HttpClient, private router: Router) {}
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) {}
 
   formLogin = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
-  })
+    password: new FormControl(''),
+  });
 
-  login(event: Event): void{
-    event.preventDefault()
-    const url = 'http://localhost:3000/auth/login'
+  login(event: Event): void {
+    event.preventDefault();
     const data = {
-      email: this.formLogin.value.email,
-      password: this.formLogin.value.password
-    }
-
-    const result = this.http.post<ResponseLogin>(url, data).subscribe({
-      next: (response) => {
-         localStorage.setItem('token', response.access_token)
+      email: this.formLogin.value.email!,
+      password: this.formLogin.value.password!,
+    };
+    this.loginService.login(data).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        localStorage.setItem('access_token', response.access_token);
+        this.router.navigate(['/dashboard']);
       },
-      error: (error) => {
-        console.error('Login failed', error)
-      }
-    })
+      error: (error: any) => {
+        console.error('Login failed', error);
+      },
+    });
   }
 }
