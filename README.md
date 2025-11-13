@@ -6,7 +6,9 @@
 ## Conceitos e tech utilizadas
 
 * Angular
+* Consumo de API
 * Componentização
+* RxJS
 * Roteamento
 * Divisão de responsabilidades
 * SCSS
