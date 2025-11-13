@@ -39,7 +39,7 @@ export class FormLoginComponent {
       next: (response: any) => {
         console.log(response);
         localStorage.setItem('access_token', response.access_token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       },
       error: (error: any) => {
         console.error('Login failed', error);
