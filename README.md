@@ -1,6 +1,6 @@
 ## AuthUser
 
-* Um sistema de login completo consumindo de um backend que provem autenticação JWT. (em desenvolvimento)
+* Um sistema de login completo consumindo de um backend que provem autenticação JWT para gerenciamento de usuários. (em desenvolvimento)
 .
 
 ## Conceitos e tech utilizadas
